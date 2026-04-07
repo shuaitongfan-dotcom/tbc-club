@@ -125,7 +125,7 @@ export const en: Translation = {
 
 	// Albums Page
 	[Key.albums]: "Albums",
-	[Key.albumsSubtitle]: "Record beautiful moments in life",
+	[Key.albumsSubtitle]: "Beautiful memories of the club",
 	[Key.albumsEmpty]: "No content",
 	[Key.albumsEmptyDesc]:
 		"No albums have been created yet. Go add some beautiful memories!",

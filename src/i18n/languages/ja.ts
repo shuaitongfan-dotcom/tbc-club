@@ -126,7 +126,7 @@ export const ja: Translation = {
 
 	// アルバムページ
 	[Key.albums]: "アルバム",
-	[Key.albumsSubtitle]: "人生の美しい瞬間の記録です",
+	[Key.albumsSubtitle]: "クラブの素晴らしい思い出",
 	[Key.albumsEmpty]: "コンテンツはありません",
 	[Key.albumsEmptyDesc]:
 		"まだアルバムが作成されていません。美しい思い出を追加しましょう!",

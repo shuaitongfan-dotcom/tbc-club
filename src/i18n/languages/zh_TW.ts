@@ -126,7 +126,7 @@ export const zh_TW: Translation = {
 
 	// 相冊頁面
 	[Key.albums]: "相冊",
-	[Key.albumsSubtitle]: "記錄生活中的美好瞬間",
+	[Key.albumsSubtitle]: "社團的美好回憶",
 	[Key.albumsEmpty]: "暫無內容",
 	[Key.albumsEmptyDesc]: "還沒有創建任何相冊，快去添加一些美好的回憶吧！",
 	[Key.albumsBackToList]: "返回相冊",
