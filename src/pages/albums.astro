@@ -1,9 +1,12 @@
 ---
 import { siteConfig } from "../config";
+export const prerender = false;
+
 import I18nKey from "../i18n/i18nKey";
 import { i18n } from "../i18n/translation";
 import MainGridLayout from "../layouts/MainGridLayout.astro";
 import { scanAlbums } from "../utils/album-scanner";
+import UploadButton from "../components/AlbumUpload/UploadButton.vue";
 
 // 检查相册页面是否启用
 if (!siteConfig.featurePages.albums) {
@@ -26,6 +29,7 @@ const albumsData = await scanAlbums();
 		class="flex w-full rounded-[var(--radius-large)] overflow-hidden relative min-h-32"
 	>
 		<div class="card-base z-10 px-9 py-6 relative w-full">
+			<UploadButton client:load />
 			<!-- 页面标题 -->
 			<header class="mb-8">
 				<h1

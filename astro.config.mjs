@@ -1,5 +1,7 @@
 import sitemap from "@astrojs/sitemap";
 import svelte, { vitePreprocess } from "@astrojs/svelte";
+import vue from "@astrojs/vue";
+import node from "@astrojs/node";
 import { pluginCollapsibleSections } from "@expressive-code/plugin-collapsible-sections";
 import { pluginLineNumbers } from "@expressive-code/plugin-line-numbers";
 import swup from "@swup/astro";
@@ -37,6 +39,12 @@ export default defineConfig({
 	trailingSlash: "always",
 
 	output: "static",
+	adapter: node({
+		mode: "standalone",
+	}),
+	security: {
+		checkOrigin: false
+	},
 
 	integrations: [
 		umami({
@@ -65,6 +73,7 @@ export default defineConfig({
 				);
 			},
 		}),
+		vue(),
 		icon(),
 		expressiveCode({
 			themes: ["github-light", "github-dark"],

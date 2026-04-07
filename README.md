@@ -69,6 +69,8 @@ Get started quickly with our comprehensive documentation. Whether you're customi
 
 ## ✨ Features
 
+*   **图集上传模块**: 新增前端上传图集功能。支持通过 Web 界面上传图片（支持拖拽文件夹），自动生成图集。利用 Astro API 路由直接保存到本地磁盘，无需依赖后端数据库或 Java 服务。
+
 ### 🎨 Design & Interface
 - [x] Built with [Astro](https://astro.build) and [Tailwind CSS](https://tailwindcss.com)
 - [x] Smooth animations and page transitions using [Swup](https://swup.js.org/)
@@ -318,6 +320,17 @@ pnpm run sync-content
 📖 **Detailed Configuration**: [Content Separation Guide](docs/CONTENT_SEPARATION.md)
 🔄 **Migration Tutorial**: [Migrate from Single Repo to Separation Mode](docs/MIGRATION_GUIDE.md)
 📚 **More Documentation**: [Documentation Index](docs/README.md)
+
+## 图集上传模块说明
+
+*   **API 路由 (`/api/upload-album.json`)**: 使用原生 `request.formData()` 处理 `multipart/form-data`，解析文件与 `info` 字段，并同步写盘到 `public/images/albums/[id]` 目录。自动生成 `info.json`。
+*   **前端组件 (`src/components/AlbumUpload/`)**:
+    *   `UploadButton.vue`: 相册页面的入口按钮。
+    *   `UploadModal.vue`: 上传模态框，包含文件处理逻辑和进度条。
+    *   `UploadForm.vue`: 用户填写信息、选择图片/文件夹的表单组件，支持拖拽和表单校验。
+*   **工具函数 (`src/utils/`)**:
+    *   `randomId.ts`: 生成 8 位随机目录名。
+    *   `validateCover.ts`: 验证单张文件最大 5MB、格式限制（`.jpg/.png/.webp`），且必须包含 `cover.jpg` 作为封面。
 
 ## ✏️ Contributing
 

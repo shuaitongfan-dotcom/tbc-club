@@ -12,7 +12,9 @@ if (!siteConfig.featurePages.albums) {
 	return Astro.redirect("/404/");
 }
 
-export const getStaticPaths = async () => {
+export const prerender = false;
+
+/* export const getStaticPaths = async () => {
 	const albumsData = await scanAlbums();
 	return albumsData.map((album) => ({
 		params: { id: album.id },
@@ -22,9 +24,11 @@ export const getStaticPaths = async () => {
 
 interface Props {
 	album: AlbumGroup;
-}
+} */
 
-const { album } = Astro.props;
+const { id } = Astro.params;
+const albumsData = await scanAlbums();
+const album = albumsData.find((a) => a.id === id);
 
 if (!album) {
 	return Astro.redirect("/404/");
