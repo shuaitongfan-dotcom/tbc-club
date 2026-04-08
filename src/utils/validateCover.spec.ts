@@ -1,5 +1,6 @@
-import { describe, it, expect } from 'vitest';
-import { validateFiles, hasValidCover, validateForm } from './validateCover';
+import { describe, expect,it } from 'vitest';
+
+import { hasValidCover, validateFiles, validateForm } from './validateCover';
 
 describe('validateCover', () => {
   it('should return true when cover.jpg is present (case insensitive)', () => {

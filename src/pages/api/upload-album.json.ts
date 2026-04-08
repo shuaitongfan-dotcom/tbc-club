@@ -1,7 +1,9 @@
 import fs from 'node:fs/promises';
 import path from 'node:path';
-import { generateAlbumId } from '../../utils/randomId';
+
 import type { APIRoute } from 'astro';
+
+import { generateAlbumId } from '../../utils/randomId';
 
 export const prerender = false;
 

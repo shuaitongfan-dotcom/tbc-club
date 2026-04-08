@@ -8,7 +8,7 @@
 		class?: string;
 	}
 
-	let { icon, class: className = "" }: Props = $props();
+	const { icon, class: className = "" }: Props = $props();
 
 	const [collection, name] = icon.includes(":")
 		? icon.split(":")
@@ -28,7 +28,7 @@
 	let svgContent = "";
 
 	async function loadIcon() {
-		if (!packageName) return;
+		if (!packageName) {return;}
 
 		try {
 			const iconsData = await import(

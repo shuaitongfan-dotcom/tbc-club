@@ -265,7 +265,4 @@ input.custom-date-input {
 .custom-date-input:hover::-webkit-calendar-picker-indicator {
   opacity: 1;
 }
-:global(.dark) .custom-date-input::-webkit-calendar-picker-indicator {
-  filter: invert(1);
-}
 </style>

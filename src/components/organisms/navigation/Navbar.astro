@@ -281,7 +281,7 @@ if (document.readyState === 'loading') {
 
 {import.meta.env.PROD && <script is:inline define:vars={{scriptUrl: url('/pagefind/pagefind.js')}}>
 window.loadPagefind = async function() {
-    if (window.pagefind) return;
+    if (window.pagefind) {return;}
     try {
         const response = await fetch(scriptUrl, { method: 'HEAD' });
         if (!response.ok) {
