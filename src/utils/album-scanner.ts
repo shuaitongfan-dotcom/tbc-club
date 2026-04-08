@@ -1,10 +1,55 @@
 import * as fs from "node:fs";
 import * as path from "node:path";
+import { fileURLToPath } from "node:url";
 
 import type { AlbumGroup, Photo } from "../types/album";
 
+// 获取正确的图片存储目录
+function getAlbumsDir(): string {
+	// 获取当前文件所在目录
+	const __filename = fileURLToPath(import.meta.url);
+	const __dirname = path.dirname(__filename);
+
+	// 在生产环境中，当前文件位于 dist/server/（或 dist/server/chunks/）
+	// 服务器目录结构：
+	// /www/wwwroot/tbc.xiaolin.help/
+	// ├── assets/
+	// ├── client/
+	// │   └── images/albums/  <- 图片存储在这里
+	// ├── pagefind/
+	// └── server/
+	//     └── entry.mjs
+	//     └── chunks/
+	//         └── album-scanner.mjs
+
+	let distServerDir = __dirname;
+
+	// 如果在 chunks 目录中，向上一级
+	if (__dirname.endsWith('chunks')) {
+		distServerDir = path.dirname(__dirname);
+	}
+
+	// distServerDir -> /www/wwwroot/tbc.xiaolin.help/server
+	const distDir = path.dirname(distServerDir); // /www/wwwroot/tbc.xiaolin.help
+	const clientDir = path.join(distDir, 'client'); // /www/wwwroot/tbc.xiaolin.help/client
+	const albumsDir = path.join(clientDir, 'images/albums');
+
+	// 开发环境：使用 public/images/albums
+	const publicDir = path.join(process.cwd(), 'public/images/albums');
+
+	// 检查 client 目录是否存在（生产环境标志）
+	if (fs.existsSync(clientDir)) {
+		console.log('[Album Scanner] 使用生产环境路径:', albumsDir);
+		return albumsDir;
+	}
+
+	// 开发环境：使用 public/images/albums
+	console.log('[Album Scanner] 使用开发环境路径:', publicDir);
+	return publicDir;
+}
+
 export async function scanAlbums(): Promise<AlbumGroup[]> {
-	const albumsDir = path.join(process.cwd(), "public/images/albums");
+	const albumsDir = getAlbumsDir();
 	const albums: AlbumGroup[] = [];
 
 	// 检查目录是否存在
